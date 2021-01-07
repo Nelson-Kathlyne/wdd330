@@ -1,6 +1,5 @@
-var week =[" <a href''>Week 1></a>"];
+var week =[Week1];
 
 function index(){
-    var weeks = week.toString();
-    var page = document.getElementById("menu").innerHTML = weeks;
+    var page = document.getElementById("menu").innerHTML = week;
 };
