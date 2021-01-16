@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> Week 2 Notes </title>
+        <meta charset = "UTF-8">
+    </head>
+    <body>
+        <h1>My Notes</h1>
+
+        <h3>Questions</h3>
+            <ul>
+                <li>What would be a good use for splice in a practical coding situation? </li>
+                <li>What is a practical problem where reduce() method would be used?</li>
+                <li>What is the purpose of weakMaps and weakSets? How should they be used? How would they be used in a practical application?</li>
+                <li>When would Bitwise be used?  Is it something that modern developers need to understand?</li>
+            </ul>
+            <br>
+        <h3>The Basics</h3>
+            <ul>
+                <li>Comments are invaluable tools when it comes to coding.  It allows not only other developers but also yourself 
+                  <br>   to more fully understand what is going on within the code, even if you have stepped away for a few weeks. 
+                  <br>   Or a brand new developer on the project looks at it.</li>
+                <li>JS is capable of understanding when a statement in the code ends, and will automatically insert a semi-colon. 
+                  <br>   However, it is error prone and so is suggested to do both style of “coding” by putting each new statement on a 
+                  <br>    new line, and end each line with a semi-colon</li>
+                <li>It should be noted that blocks {…} do not need to be ended with a semicolon. </li>
+                <li>There are several keywords that should not be used as a variable name, function name etc. These include: abstract, await,
+                   <br>  boolean, break, byte, case, catch, char, class, const, continue, debugger, default, delete, do, double, else, enum, export, extends,
+                   <br>  false, final, finally, float, for, function, goto, if, implements, import, in instanceof, int, interface, let, long, native, new, null, 
+                   <br>   package, private, protected, public, return, short, static, super, switch, synchronized, this, throw, throws, transient, true, try,
+                   <br>   typeof, var, volatile, void, while, with, yield  AND   undefined, NaN, Infinity</li>
+                <li>There are 7 different type of data 6 of which are primitive:
+                    <li>String</li>
+                    <li>Symbol (The symbol primitive data type was only introduced in ES6.)</li>
+                    <li>Number</li>
+                    <li>Boolean</li>
+                    <li>Undefined</li>
+                    <li>Null</li>
+                </li>
+                <li>Any value that doesn’t fall into one of these is considered an object these include functions, arrays, and object literals.</li>
+                <li>Const (var Name) =  should be used whenever another value will NOT be assigned to that variable</li>
+                <li>Let (var Name = should be used whenever another value COULD be assigned to that variable</li>
+                <li>Multiple variables can be assigned at once by including commas in between, and ending the entire line with a semicolon</li>
+                <li>Using const is preferred coding method because it helps to prevent unexpected bugs.</li>
+                <li>Using var to declare variable is an older way to declare variables while let and const are the newer and currently preferred ways to declare 
+                    <br>variables.  However, using let and const makes them only available within the scope of the block.</li>
+                <li>A useful way to distinguish between properties and methods is that methods end with () while properties don’t</li>
+                <li>When increasing the variable if the ++ goes infront of the variable it will increase the variable and then return the new variable, 
+                    <br>where as if ++ is placed after it will first return the variable and then add 1 to the variable.</li>
+                <li>Infinity error simply means the number is too large for JS to correctly deal with while -Infinity which is used for negative numbers 
+                    <br>that go below the same threshold.  The threshold is 1.7976931348623157e+308</li>
+                <li>The smallest number JS can handle is 5e-324.  Anything smaller will simply return as 0</li>
+                <li>NaN is an error meaning not a number</li>
+                <li>A number can be checked for suitability within JS by using the Number.isFinite() method.</li>
+                <li>JS does occasionally use Type Coercion which happens when JS tries to convert a string “number” into a real number.  
+                   <br> Sometimes, it will work correctly other times you can get unexpected errors.  If you are needed to change the data type it Is recommended
+                   <br>  to do it manually to avoid these often unforeseen errors. (It also makes the code easier to read and understand exactly what is happening)</li>
+                <li>Undefine more or less means JS cannot find a value that is assigned to the called variable</li>
+                <li>Null is a place holder that means no value.  It acts like a zero.</li>
+                <br>
+                </ul>
+        <h3>Methods</h3>
+            <ul>
+                <li>Number() method is preferred when changing a string number into a regular number.  It is clean and helps avoid type coercion errors.</li>
+                <li>String() method is preferred when changing a number to a string number.</li>
+                <li>ParseInt() function will change the number in an address to an actual number while ignoring the letters following in the address line.  While using the Number()  
+                    <br>will simply return NaN because it can see that the letters are indeed not numbers.</li>
+                <li>ParseInt will also remove anything after the decimal in floating numbers</li>
+                <li>ParseFloat will change a string into a floating number</li>
+                    <br>
+            </ul>
+        <h3>Boolean</h3>
+            <ul>
+                <li>Almost all values are “truthy” values meaning that in terms of Boolean they would return true.</li>
+                <li>There are 9 “falsey” values.  These are: “ “ (the empty double quote)  ‘ ‘ (The empty single quote)  ` ` (empty back ticks)  0     -0      NaN    false  
+                    <br> null   undefined</li>
+                <li>Double negating (!!) allows for a quick evaluation of if the value is true or false without having to use the Boolean method  (work smarter not harder)</li>
+                <br>
+            </ul>
+        <h3>Comparison</h3>
+            <ul>
+                <li>When using && the first operator that is false is returned (it will only evaluate to true if both values are true)</li>
+                <li>When using || the first operator that is true is returned.  It will only evaluate as false if both operators are false and then it will return the last 
+                    false</li>
+                <li>== is considered soft equality and uses type coercion to try and make the variable and what you are comparing it to match.  This can lead to bugs in 
+                    the code</li>
+                <li>=== is hard equality and takes into account data types before returning true or false.  It will only return true if the data types match as well the 
+                    “answer”</li>
+                <li>The only quirk of hard equality comes from NaN === NaN  this is when Number.isNaN() method should be used. </li>
+                <li>Caution should also be used when using the >= and <= because this are similar to soft equality in that it will allow for type coercion.</li>
+                <li>The work around to type coercion when using equal or </> is by breaking it into 2 parts.  Using the OR || with a hard equality ===.  
+                    <br>Using the greater/lesser on one side and the hard equality on the other</li>
+                    <br>
+            </ul>
+        <h3>Arrays</h3>
+            <ul>
+                <li>When creating an array it is suggested to do so using an array literal primarily because it helps avoiding typos and also cuts down on the amount of 
+                    typing required.</li>
+                <li>Be careful when removing values from an array.  Simply because you delete a value does not mean that the index was removed.  Just changed to undefined.</li>
+                <li>The .pop() method will call the last item of the array, but also removes it from the array.</li>
+                <li>The .shift() method will call the first item of the array, but also removes it from the array</li>
+                <li>The .push() method can add a new item to the end of the array</li>
+                <li>The .unshift() method will add a new item to the beginning of the array</li>
+                <li>The .concat() method can add 2 arrays together forming a new array, however the best way to do this is through the spread operator (…)</li>
+                <li>The .join() method turns all items in the array into strings with commas in between.  You can select a different separator by placing it within 
+                    the parentheses </li>
+                <li>The .slice() method can create a “subarray” without deconstructing the primary array</li>
+                <li>The .splice() method removes an item in the array and replaces it with a new item. The first number within the parentheses tells us where to begin the splice or slice.  
+                    <br>The second number says how many items to remove (in case of splice) Every value after is added into the array at that point.</li>
+                <li>Splice can also be used to insert new objects into the array without deleting anything.  This can be done by ensuring the second number in the parentheses is a 0. </li>
+                <li>Splice can be used to remove an item completely by not specifying anything to insert.  .splice(2 1)  removes the item at the 2nd position (3rd in the list)</li>
+                <li>.reverse() will reverse the array order permanently </li>
+                <li>.sort() will put the array into alphabetical order for strings permanently. (Numbers are more picky and  only look at the first digit… therefore 10 comes before 9</li>
+                <li>Using .indexOf() will give us the first index of the occurrence of the item we are looking for within the array or a -1 if it wasn’t found within the array.</li>
+                <li>.includes() can also be used and will return a Boolean value</li>
+                <li>An array of arrays is known as a multidimensional array.  This would be useful for coordinates.  Separating out seasons from the year. Etc.</li>
+                <li>If we are trying to find a value in a multidimensional array it takes 2 indices.  The first will tell which array within the (parent array) we are 
+                    <br>looking for.  And then the next will tell us what child of the sub array we are looking for.  </li>
+                <li>The spreader operator (…) can also be used to “flatten” a multi dimensional array, creating one larger array with no sub arrays.</li>
+                    <br>
+            </ul>
+        <h3>Sets</h3>
+            <ul>
+                <li>To create a Set we need to say  = new Set();</li>
+                <li>Values are added to sets by using .add(), This can be used multiple times in one line.</li>
+                <li>You cannot add the same value twice in a set and if you attempt to it will be ignored.</li>
+                <li>Multiple values can be added into a set at one go by placing the values inside of an array.</li>
+                <li>When viewing a set simply use the variable it is saved under</li>
+                <li>Strings will be broken apart in sets as individual characters.</li>
+                <li>If trying to add separate words to a set the .add() method must be used</li>
+                <li>Type coercion is not used when adding values to a set.  So 2 and ‘2’  can both be added to the same set.</li>
+                <li>.size() will show the number of values in a set</li>
+                <li>.has() can check for a value within a set</li>
+                <li>.delete() can be used to remove a value from a set.  It will return true if successful and false if not successful or value was not found within the set.</li>
+                <li>.clear() can be used to remove all values from the set</li>
+                <li>To change a set to an array, you need to declare a new variable (your array) and place the spreader operator(…) and set name inside the array brackets.</li>
+                <li>You can also use Array.from() however there is more typing in this situation so the latter is preferred.</li>
+                <li>Understanding sets and how to change them to an array allows for us to quickly and efficiently remove any duplicate values.</li>
+                <li>Weaksets are useful in being able to manage “memory leaks” which slow down performance of the program/web page.  However, it should be noted they can only hold non-primitive type data.</li>
+                    <br>
+            </ul>
+        <h3>Maps</h3>
+            <ul>
+                <li>Maps are useful for key value pairs</li>
+                <li>We use .set() to add a new key, value pair to the map</li>
+                <li>The  .get() method will show the value of the key you put in.</li>
+                <li>The  .has() method can check to see if there is a particular key in the map.  It will return a Boolean.</li>
+                <li>Maps can be created with multiple values by using nested arrays.</li>
+                <li>.delete() will remove one key value pair, while .clear() will remove all key value pairs from the Map</li>
+                <li>Maps can be converted to arrays just like sets by using the spreader (…) infront of the variable name within array brackets.</li>
+                <li>Weak maps are the same as weak sets </li>
+                    <br>
+            </ul>
+        <h3>Loops & Interations</h3>
+            <ul>
+                <li>? is the ternary operator it works similarly to the if else statements</li>
+                <li>Condition ? (code to run if true) : (code to run if false)</li>
+                <li>While Loops  while (condition) {//do something}</li>
+                <li>Watch out for infinite loops (make sure at some point the code will stop and that the condition will be met or proved false</li>
+                <li>Do …. While Loops     do{ do something  }  while(condition)    This type of loop will always be ran at least once</li>
+                <li>For loops   for( initialization ; condtion ; after) {do something}</li>
+                <li>Initialization is ran before the loop starts,  the condition must be met for the loop to continue,  after is what happens after each initialization of the loop (think increment or decrement)</li>
+                <li>For loops are considered the most clear.</li>
+                <li>For of loops allow for going through arrays and looks slightly cleaner than the normal for loops  
+                    <br>(these were introduced in ES6       for(const value of avengers){  console.log(value);}</li>
+                <li>For Of Loops also work for working with sets (iterating through them) as well as Maps</li>
+                <li>In maps if you are wanting to see both the key value pairs simply make the const variable an array of both the key and value  [key, value].  You also need to use the .entries() method.</li>
+                    <br>
+            </ul>
+        <h3>Functions</h3>
+            <ul>
+                <li>Functions should always be declared as function literals function _____(){    }</li>
+                <li>It is best to keep your code DRY (Don’t Repeat Yourself)  or KISS (Keep It Simple Stupid)</li>
+                <li>Return is how we define what the function should “return” to the user.  It also allows us to assign a variable to the function, and will therefore have the value of the function   
+                   <br> Function howdy() {   return ‘Howdy World!’; }        const message = howdy();        ‘Howdy World!’
+                </li>
+                <li>Parameters should be set when the function is defined.  However, when the function is invoked is when the arguments are provided.</li>
+                <li>Parameters are what the function will need to “function”  while the argument is fulfilling the needs of the function.   
+                    <br>(I want to make orange juice,  I know I will need oranges and water.  I buy the oranges and water.  I can now make orange juice)</li>
+                <li>If a function  is invoked with out all parameters being defined as arguments the function will still run.  However, the “blank” parameter will 
+                    <br>be equated to undefined which will result in errors such as NaN</li>
+                <li>A function given too many arguments will still function fine, it will ignore the added arguments.  </li>
+                <li>Every function has a variable known as arguments.</li>
+                <li>… (rest parameter) allows us to get more functionality from functions, such as allowing use all the parameters that were entered when the function was called. 
+                    <br>This is useful for something like the mean function because we can then run a for…of loop which will allow us to find the mean for any set of numbers input into the arguments.</li>
+                <li>function mean(...values) {
+                   <br> let total = 0;
+                   <br> for(const value of values) {
+                    <br>    total += value;
+                    <br>}
+                   <br> return total/values.length;
+                <br>}</li>
+                <li>You can also assign default values to the parameters, these will be invoked if nothing else is used for an argument</li>
+                <li>function hello(name='World') {
+                    <br>console.log(`Hello ${name}!);
+                    <br> }
+                </li>
+                <li>Default parameters should always come after regular parameters.</li>
+                <li>The Arrow Function is a more succinct way to declare a function.  Single parameters are not placed within parentheses. The parameters simply come before the “arrow” => and the main body 
+                    <br>of the function comes after.  Also they are not required to be put into “blocks” {}</li>
+                <li>Arrow functions do require to be named.  ( const var = x => x*x)</li>
+                <li>If no parameters are required 2 empty parentheses are not required before the arrow.</li>
+                <li>Longer functions still need blocks { } and the return keyword   (all together arrow functions are perfect for short 1 line codes.  However, more complex codes they lose their edge. </li>
+                <li>A function passed as a parameter to another function is known as a callback</li>
+                <li>Filter() method can be used in situations to filter out an array for example to find all the even numbers, or only “truthy” values.  We can also negate it and find all the “falsey” values. </li>
+
+
+
+
+                
+            </ul>
+                
+
+            
+
+    </body>
+</html>
