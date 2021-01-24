@@ -1,3 +1,4 @@
+  
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -26,6 +27,45 @@
         { first: "Lise", last: "Meitner", year: 1878, passed: 1968 },
         { first: "Hanna", last: "Hammarström", year: 1829, passed: 1909 },
       ];
+
+      // Array.prototype.filter()
+      // 1. Filter the list of inventors for those who were born in the 1500's
+      const born = inventors.filter((val) => val.year > 1499 && val.year < 1600);
+      console.log("born: ", born);
+      // Array.prototype.map()
+      // 2. Give us an array of the inventors' first and last names
+
+      const myFunc = (val) => val.first + " " + val.last;
+      const name = inventors.map(myFunc);
+      console.log("names: ", name);
+      // Array.prototype.sort()
+      // 3. Sort the inventors by birthdate, oldest to youngest
+      // see for compare details https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort
+      const copyInventors = inventors;
+      copyInventors.sort((a, b) => (a.year < b.year ? -1 : 1));
+      console.log("sort: ", copyInventors);
+
+      // Array.prototype.reduce()
+      // 4. How many years did all the inventors live?
+      const sum = inventors.reduce(function (accumulator, item) {
+        return accumulator + (item.passed - item.year);
+      }, 0);
+      console.log("sum:", sum);
+
+      // 5. Sort the inventors by years lived
+      const yearsLived = inventors;
+      yearsLived.sort((a, b) => (a.passed - a.year < b.passed - b.year ? -1 : 1));
+      console.log("yearsLived:", yearsLived);
+      
+      // 6. create a list of Boulevards in Paris that contain 'de' anywhere in the name
+      // https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
+      // goto the link above and open the console. Paste the following two lines in.
+      //    That will create a list of links in memory that you can reference through the console.
+      //    Use that list to finish the problem.
+      // const category = document.querySelector('.mw-category');
+      // const links = Array.from(category.querySelectorAll('a'));
+      // ***NOTE: THIS IS OUR SOLUTION:
+      // const blvdDe = links.filter((val) => /de/.test(val.title));
 
       const people = [
         "Beck, Glenn",
@@ -71,29 +111,13 @@
         "Blake, William",
       ];
 
-      // Array.prototype.filter()
-      // 1. Filter the list of inventors for those who were born in the 1500's
-      const f
-      // Array.prototype.map()
-      // 2. Give us an array of the inventors' first and last names
-
-      // Array.prototype.sort()
-      // 3. Sort the inventors by birthdate, oldest to youngest
-
-      // Array.prototype.reduce()
-      // 4. How many years did all the inventors live?
-
-      // 5. Sort the inventors by years lived
-
-      // 6. create a list of Boulevards in Paris that contain 'de' anywhere in the name
-      // https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
-      // goto the link above and open the console. Paste the following two lines in.  That will create a list of links in memory that you can reference through the console. Use that list to finish the problem.
-      // const category = document.querySelector('.mw-category');
-      // const links = Array.from(category.querySelectorAll('a'));
-
       // 7. sort Exercise
       // Sort the people alphabetically by last name
-
+      // ***NOTE: This is already sorted by last name, so we sorted it by first name
+      const lastSort = people;
+      const r = new RegExp(", (.+$)");
+      lastSort.sort((a,b) => (a.match(r)[1] < b.match(r)[1]) ? -1 : 1);
+      console.log("lastSort:", lastSort);
       // 8. Reduce Exercise
       // Sum up the instances of each of these
       const data = [
@@ -112,6 +136,15 @@
         "car",
         "truck",
       ];
+      const sums = data.reduce(
+          (accumulator, val) => {
+            accumulator[val] = accumulator[val] + 1 ||  1;
+            return accumulator;
+          },
+          {}
+      );
+      console.log("sums:", sums);
+
     </script>
   </body>
 </html>
