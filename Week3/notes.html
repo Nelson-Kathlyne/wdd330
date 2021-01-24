@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> Week 3 Notes </title>
+        <meta charset = "UTF-8">
+    </head>
+    <body>
+        <h1>My Notes</h1>
+        <h3>Questions</h3>
+            <ul>
+                <li>When would you need to refer to a this in an event listener? Practical application?</li>
+            </ul>
+            <br>
+        <h3>This</h3>
+            <br>
+            <ul>
+                <li>When “this” is used in a global concept it refers to the Window  object</li>
+                <li>“This” being used in a global concept is rare.</li>
+                <li>When a new instance of an object is made using “new”, “this” refers to that instance.</li>
+                <li>“This” can also be used as an object method. 
+                    <br> (A method is a fancy way of referring to a function that deals with an object)</li>
+                <li>“This” within any method refers to the object itself.</li>
+                <li>When “this” is used in a simple function it will always refer to the Window object.  This is true even if a simple function is called within an object.</li>
+                <li>A quick fix for this is setting a variable such as self or that to hold the value of this.</li>
+                <li>When “this” is used in an arrow function it refers to “this” immediately around it or the “immediate scope</li>
+                <li>If you need to use “this” to reference the object in an event listener you must use bind to manually create a “this” context</li>
+            </ul>
+            <br>
+        <h3>Objects</h3>
+            <br>
+            <ul>
+                <li>Objects are like a database of values.  A thing (object) has several traits.</li>
+                <li>An object literal is created directly in the language by wrapping its values in curly braces</li>
+                <li>All objects are mutable at any given time a program is running.</li>
+                <li>Object literal notation is the preferred method for creating an object 
+                    <br>(  const anObject = {} )</li>
+                <li>Dot notation is must more common.  However, bracket notation has many advantages such as allowing for 
+                    <br>concatenation, and it is the only method in which to access non-standard property or method names.</li>
+                <li>Symbol or [] square brackets are unique values and help to ensure that there are not any naming clashes.
+                   <br> Ex. Const daredevil ={ [name]: ‘Daredevil’, [realName]: ‘Matt Murdoch’ };
+                    </li>
+                <li>To call an object the dot or square bracket method can be used.  However, since it is calling a method parenthesis must be used</li>
+                <li>We can use the in property to see if an object as a particular property. It will return a Boolean.</li>
+                <li>All objects have a hasOwnProperty() method.   We can therefore use this method rather than the in property to very if the object has a particular property. 
+                    <br>Ie superman.hasOwnProperty(‘city’);
+                    <br> false
+                    <br>Superman.hasOwnProperty(‘name’);
+                    <br>true
+                    </li>
+                <li>All the properties of an object can be looped through by using a “for in” loop. 
+                    <br>Ex for(const key in superman){
+                    <br>Console.log(key + ”: ” + superman[key]);
+                    <br> }
+                    <br>“name: Superman”
+                    <br>”real name: Clark Kent”
+                    <br>”height: 75”
+                    <br>”weight: 235”
+                    <br>”hero: true”
+                    <br>”villain: false”
+                    <br>”allies: Batman, Supergirl, Superboy”
+                    <br>”fly: function(){
+                    <br>Console.log(\”up, up and away!\”);
+                    <br>}”
+                    </li>
+                <li>The Object.keys() method will return an array of all the keys of any object that is provided as an argument.  
+                    <br>It will then allow use to iterate over the array to access all the keys of the object.</li>
+                <li>Object.values() will work in the same way but return all the values rather than the keys.</li>
+                <li>There is also Object.entries() which will give us an array of key value pairs for the object.  We can then destructure it as follows:
+                    <br>For (cont [key, value] of Object.entries(superman)) {
+                    <br>Consolue.log( ‘${key}: ${value}’);
+                    <br>
+                    </li>
+                <li>To add a property to an Object it needs to simply be declared.  Ie superman.city = “Metropolis”;</li>
+                <li>It needs to also be noted that the properties of an object will not always be listed in any particular order unlike an array or map</li>
+                <li>The value of a property can be changed at any given time using assignment.  
+                    <br>IE superman[‘real name’] = ‘Kal-El’;</li>
+                <li>Any property can be removed from an object by using the delete operator. IE delete superman.fly</li>
+                <li>An object can also contain other objects.  These are known as nested objects.</li>
+                <li>You can access a nested object by calling it using the dot method.   
+                    <br>IE  jla.wonderWoman.realName or jla[‘flash’][‘realName’]</li>
+                <li>If we make a variable that points to an existing object we did not make a new object rather, we are simply pointing to the same object.  
+                    <br>Any changes made to either the original or copy will affect the same object. </li>
+                <li>An object literal can also be used as a parameter in a function.  This is useful because we don’t have to remember what order we need to put the arguments in.  </li>
+                <li>Using objects for namespacing is useful to help prevent naming collisions (using the same names for multiple functions or variables)</li>
+                <li>JSON is a very lightweight platform primarily used for storing data.  It is considered the perfect blend between human and machine readable</li>
+                <li>By using JSON parse();  It will return a JavaScript object.</li>
+                <li>By using JSON.stringify();  It does the exact opposite and will take a JS object and return it as a string of JSON data.</li>
+                <li>It should be noted that any method within the object will be ignored when stringify is invoked.</li>
+                <li>Space arguments can be added when using stringify to make it easier to read the string of data when using something such as AJAX or local storage</li>
+                <li>The Math Object has 8 built in properties:
+                    <ul>
+                        <li>Math.PI (returns PI)</li>
+                    <li>Math.SQRT2 (returns square root of 2)</li>
+                    <li>Math.SQRT1_2(returns the reciprocal of the square root of 2)</li>
+                    <li>Math.E (Returns Euler’s constant)</li>
+                    <li>Math.LN2 (Returns the natural logarithm of 2)</li>
+                    <li>Math.LN10 (Returns the natural logarithm of 10)</li>
+                    <li>Math.LOG2E (Returns log base 2 of Euler’s constant)</li>
+                    <li>Math.LOG10E (Returns log base 10 of Euler’s constant)</li>
+                    </ul>
+                </li>
+                <li>The Math object also has several methods</li>
+                    <ul>
+                        <li>Math.abs()  will return the absolute value ie remove any negatives</li>
+                        <li>Math.ceil() will round the number up</li>
+                        <li>Math.floor() will round the number down.</li>
+                        <li>Math.round() will round the number to the nearest integer</li>
+                        <li>Math.trunc() will truncate the float and return the base number</li>
+                        <li>Math.exp() will raise a number by the power of Euler’s constant</li>
+                        <li>Math.pow() will raise any number (the first argument) by that of another number (the second argument)</li>
+                        <li>Math.sqrt() will return the positive square root of any number</li>
+                        <li>Math.cbrt() will return the positive cubic root of any number</li>
+                        <li>Math.hypot() will return the square root of the sum of the square root of the first argument and second argument 
+                            <br>(used to find the hypotenuse of a right angle triangle)</li>
+                        <li>Math.log() returns the natural logarithm of a number</li>
+                        <li>Math.max()will return the maximum number from its arguments</li>
+                        <li>Math.min() will return the minimum from its arguments</li>
+                        <li>Math.sin() returns the sine of an angle</li>
+                        <li>Math.cos() returns the cosine of an angle</li>
+                        <li>Math.tan() returns the tangent of an angle</li>
+                        <li>Math.asin() returns the arc sine of an angle</li>
+                        <li>Math.acos() returns the arc cosine of an angle</li>
+                        <li>Math.atan() returns the arc tangent of an angle</li>
+                        <li>Math.___h()returns whatever hyperbolic trig function</li>
+                        <li>Math.random() will return a random number</li>
+                        <li>To put in a ceiling of a random number simply times the “ceiling” number by the Math.random function.  
+                            <br>If we want to only deal with integers we also utilize Math.floor
+                            <br>IE Math.floor(6*Math.random()) Will return a WHOLE number between 0 and 6  </li>
+                    </ul>
+                    <li>There are also Date Objects which contains information about dates and times.   Each object represents a single moment in time.</li>
+                    <li>Const today = new Date();
+                        <br>The variable today now points to a Date object.  We can now use the toString method to find out what date it is.
+                        <br>Today.tostring()
+                        <br>If an argument is not supplied it will revert to the current date and time
+                        </li>
+                    <li>It is possible to create new Date objects by supplying an argument to the constructor. </li>
+                    <li>It is best to provide all details as arguments   new Date(year, month, day, hour, seconds, milliseconds)</li>
+                    <li>An alternative is to use the timestamp method which is using a single integer as an argument that represents the number of milliseconds since the Epoch (January 1st 1970)</li>
+                    <li>Properties of date objects cannot be directly viewed or changed.  Rather you must use the Getter method.</li>
+                    <ul>
+                        <li>getTime(), getTimezoneOffset(), getYear().</li>
+                        <li>getDay() will return the day of the week the date object falls on.</li>
+                        <li>getDate() will return the day of the month the date object falls on</li>
+                        <li>getMonth() will return the month the date object falls on</li>
+                        <li>getYear() is NOT Y2K compliant.  Rather it is appropriate to use getFullYear()</li>
+                        <li>getTime() will return the Epoch integer</li>
+                    </ul> 
+                    <li>Setter method allows to change the date of a date object. </li>  
+                    <ul>
+                        <li>setDate() will set the date of the month</li>
+                        <li>setMonth() will set the month of the year</li>
+                        <li>setFullYear() will set the year.</li>
+                    </ul> 
+                    <li>To see the actual date in a format we can understand we need to use the .toString() method</li>
+                    <br><h3>Regular Expressions:</h3>
+                    <br><li>When using regular expressions you can search for things such as all instances of something ending in “ing”</li>
+                    <li>When creating regular expressions it is a preferred method to use literal notation.</li>
+                    <li>Regular expressions could be used to verify a string or sanitize information from a form.</li>
+                    <li>Regular expressions have several properties:
+                        <ul>
+                            <li>Global will return all matches. Not just stop at the first which is default</li>
+                            <li>ignoreCase will make the pattern case-insensitive.  The default is case sensitive</li>
+                            <li>multiline will allow for several lines to be searched.  Default stops at the end of the line.</li>
+                            <li>G will set it to global when placed after a regular expression.</li>
+                            <li>I will set it to ignore case when placed after a regular expression.</li>
+                            <li>M set the multiline property when placed after the regular expression.</li>
+                        </ul>
+                    </li>
+                    <li>Special Characters
+                        <ul>
+                            <li>. matches any character other than line breaks</li>
+                            <li>\w matches any word character and is equivalent to [A-Za-z0-9]</li>
+                            <li>\W matches any non-word character and is equivalent to [\^A-Za-z0-9_]</li>
+                            <li>\d matches any digit character and is equivalent to [0-9]</li>
+                            <li>\D matches any non-digit character and is equivalent to [^0-9]</li>
+                            <li>\s matches any whitespace character and is equivalent to [\t\r\n\f]</li>
+                            <li>\S matches any non-whitespace character and is equivalent to [^\t\r\n\f]</li>
+                        </ul>
+                    </li>
+                    <li>Modifiers
+                        <ul>
+                            <li>? makes the preceding token in the regular expression optional</li>
+                            <li>+ Matches one or more occurrences of the preceding token</li>
+                            <li>*Matches one or more occurrences of the preceding token</li>
+                            <li>(n) matches n occurrences of the preceding token</li>
+                            <li>(n, ) matches at least n occurrences of the pattern</li>
+                            <li>(n,m) matches at n and most of m occurrences of the preceding token</li>
+                            <li>^ marks the position immediately before the first character of the string</li>
+                            <li>$ marks the position immediately after the last character in the string</li>
+                        </ul>
+                    </li>
+            </ul>
+            <br>
+            <h3>Document Object Model - DOM</h3>
+            <ul>
+                <li>A DOM treats everything on a webpage as a node</li>
+                <li>An HTML tag is the root node, and everything else are considered child nodes.</li>
+                <li>DOM is language agnostic, however JS is the most commonly used language with DOMs</li>
+                <li>JS can be used to access and modify different parts of a web page using a built in object known as “document”</li>
+                <li>Any white space in HTML is saved as a DOM node. </li>
+                <li>All nodes have a type:
+                    <ul>
+                        <li>1 = element</li>
+                        <li>2 = attribute</li>
+                        <li>3 = text</li>
+                        <li>8 = comment</li>
+                        <li>9 = body</li>
+                    </ul>
+                </li>
+                <li>Legacy DOM shortcuts
+                <ul>
+                    <li>Document.body = returns the body element of a web page,</li>
+                    <li>Document.images = returns a node list of all the images contained within the document</li>
+                    <li>Document.links = returns a node list of all the <a> elements and <area> elements that have an “href” attribute</li>
+                    <li>Document.anchors = returns a node list of all the <a> elements that have a “name” attribute</li>
+                    <li>Document.forms = returns a node list of all the forms in the document.</li>
+                </ul>
+                </li>
+                <li>While nodes are array like they are not arrays.  However, you can still access each item using index notations. They also have length properties which can be used with for loops to iterate through. 
+                   <br> For (let i=0 ; I < document.images.length ; i++)
+                    </li>
+                <li>Node lists however do not have any of the other common array methods such as slice, splice, or join</li>
+                <li>However, you can quickly turn a node list into an array by using Array.from() method. 
+                    <br>Const imageArray = Array.from(document.images);
+                    <br>Or the spread operator
+                    <br>Const imageArray = […document.images]
+                    <br>Once it has been made into an array all the array methods will be available
+                    </li>
+                <li>Document.getElementByID() Is one of the most commonly used tools to find a particular element in a webpage.</li>
+                <li>No 2 elements should have the same ID name.</li>
+                <li>querySelector() allows you to use CSS notation to find particular elements. </li>
+                <li>childNodes return all nodes that are children of an element.  This will often include blank texts because nodes include white spaces.</li>
+                <li>Children will only return children ELEMENTS of the element.  It will not include text nodes.</li>
+                <li>firstChild property returns the first child of a node</li>
+                <li>lastChild property returns the last child of a node</li>
+                <li>Both of these properties should be used with caution because they will often times return only blank text nodes</li>
+                <li>parentNode property will return the parent node of an element.</li>
+                <li>nextSibling property returns the next adjacent node of the same parent.  However, it will return null if the nose is the last child node of that parent.</li>
+                <li>previousSibling property returns the previous adjacent node.  It will return null if it is the first child of that parent. </li>
+                <li>Once again these properties return nodes and not elements so they will frequently return blank text nodes.</li>
+                <li>getAttribute() will return the value of the attribute provided as the argument.  If the element does not have the given attribute it will return Null.</li>
+                <li>setAttribute() can change the value of an element’s attributes.  It requires 2 arguments. The element, and what you wish to change it to.   It can also give the element the attribute with the value that is in the arguments. </li>
+                <li>Legacy DOM allows for dot notation   (element.attribute will display the value of the attribute)</li>
+                <li>className property can be used to directly set the class of an element. As well as directly accessing the value of the class of the element</li>
+                <li>classList property gives a list of all the classes an element has.</li>
+                <li>Add method can be used with the classList property to add classes to the element without deleting any of the existing classes.
+                    <br>Element.classList.add()
+                    </li>
+                <li>The remove method works similarly to the add method and is used to remove an existing class from an existing element.</li>
+                <li>Toggle method will remove a class if it already exists or add the class if it doesn’t already exist.  It will return true if the class was added and false if it wasn’t added.</li>
+                <li>Contains method checks to see if an element contains a certain class.</li>
+                <li>createElement property allows us to create a new element within the document.</li>
+                <li>To add content we would use a createTextNode property.  This will take a parameter and turn it into a string that goes in the textNode</li>
+                <li>Every node object has an appendChild() method.   This will add another node as a child node. </li>
+                <li>This is the process to create a new element with text:
+                    <br>Create the element node
+                   <br> Create the text node
+                    <br>Append the text node to the element node
+                    <br>Or you can use textContent property, which every element object has.  Though this method reduces typing it can still become repetitive so it is suggested to make a function which can speed up the coding.
+                    </li>
+                <li>Example of a function to add content
+                    <br>Function createElement(tag, text) {
+                    <br>Const el = document.createElement(tag);
+                    <br>El.textContent = text;
+                    <br>Return el
+                    <br>}
+                    </li>
+                <li>appendChild() Method is used to add an element to the end of a list.</li>
+                <li>The insertBefore() method is useful to placing a new element before another element in the markup.   
+                    <br>This method is called on the parent node. It takes 2 parameters the first being the new node to be added, and the second is the node you want it to go before.  
+                    <br>It should be noted that there is no insertAfter() method
+                    </li>
+                <li>removeChild() method can be used to remove an element.  It is called on the parent node. It has 1 parameter.</li>
+                <li>replaceChild() method can be used to replace one node with another. It is called on the parent node and contains 2 parameters. 1) The new node 2) The node being replaced.</li>
+                <li>innerHTML property will return all the child elements of an element as a string of HTML.</li>
+                <li>innerHTML also allows for quick seamless changes without having to use the DOM/nodes methods.</li>
+                <li>getElementsByClassName and getElementsByTagName are both live.  This means that any lists created from calling this methods will automatically update when the page changes</li>
+                <li>Every element has a style property.  This can be used to quickly change the “styling” of the page.
+                    <br>Superman.style.border = “red 2px solid” ;
+                    </li>
+                <li>Any CSS properties called using the style property that are usually dashed must be called using camel case.  Or using bracket notation
+                   <br> IE backgroundColor not background-color
+                    <br>Superman.style[‘background color’]= ‘blue’;
+                    </li>
+                <li>The display method of style can also be useful.  It allows for elements to be hidden or reappear.  
+                    <br>IE superman.style.display = “none”   DISAPPEARS
+                    <br>Superman.style.display = “block” REAPPEARS
+                    </li>
+                <li>getComputerStyle() function allows for a read only display of all CSS elements applied to a particular element.  (You can’t change them here but it is useful to see what is being used to create the current style)
+                <li>getComputerStyle() will output an object of key value pair list</li>
+                <li>We can then use getPropertyCSSValue() method to find out the styling for a particular CSS element such as color.</li>
+                <li>Some browsers do not allow these methods and will return an error. Chrome is included in this list.</li>
+                </li>
+            </ul>
+            <br>
+            <h3>Events</h3>
+            <ul>
+                <li>The click event happens whenever the page is clicked on.  The enter key is pressed. Or the screen is tapped. </li>
+                <li>To get the event to happen an event listener must be added
+                    <br>IE document.body.addEventListener(“click”, doSomething);
+                    </li>
+                <li>The current standard and recommendation for events is to use event liisteners.
+                    <br>IE addEventListener()
+                    </li>
+                <li>The event listener method is called on a node object. 
+                    <br>Document.body.addEventListener(‘click’, doSomething);
+                    <br>This added an event listener to the body of the page, and is looking for a click which will then initiate the doSomething function.
+                    </li>
+                <li>You can also add a global event listener (watches the entire page) by not applying it to a node.
+                    <br>IE addEventListener(‘click’, () => alert(‘YouClicked!’));
+                    <br>This example shows the global event listener being added and then an anonymous function being called from the event which then does an alert
+                    </li>
+                <li>You can also name a function rather than using an anonymous function
+                    <br>Function doSomething() {alert(‘You Clicked!’);}
+                    <br>addEventListener(‘click’, doSomething);
+                    </li>
+                <li>The parameter when calling an event doesn’t always have to be named event it can be any “legal” variable name.  Many coders will shorten event to just e.</li>
+                <li>Target property returns a reference to the node that fired the event.</li>
+                <li>You can find the coordinates where the event was fired by using screenX or screenY which will show the number of pixels left and top of the screen respectively.</li>
+                <li>clientX and clientY returns the pixels from left and top respectively of the client that is being used (generally the web browser)</li>
+                <li>pageX and pageY returns the pixels from left and top respectively of the document.  These take into account if the screen has been scrolled.</li>
+                <li>Mouse events include: click, mouseup, mousedown, mouseover, mousemove, and dblclick. </li>
+                <li>It is not recommended to use both click and dblclick on the same element</li>
+                <li>Keyboard Events include:  keydown, keypress, and keyup.</li>
+                <li>Keydown occurs when a key is pressed and will continue to occur if the key is held down.</li>
+                <li>Keypress occurs after a keydown event but before keyup event.  The keypress even only occurs for keys that produce character input (including the delete key) This makes it the most reliable method of finding out which character was pressed on the keyboard.</li>
+                <li>Keyup occurs when the key is released.</li>
+                <li>Keydown is used when a physical keyboard is expected or present while Keypress is used when a tablet or virtual keyboard is in use or expected.</li>
+                <li>The modifier keys; Shift, Ctrl, Alt, and meta or Cmd will fire the keydown and keyup events but not the keypress even as they don’t produce any characters on the screen.</li> 
+                <li>The name of the modifier will still be returned by the key property.</li>   
+                <li>
+                    Touchstart initializes when the screen is initially touched.  This even should be used sparingly because it can prevent the user from zooming or another activity they are trying to accomplish on their touch device.
+                    </li>
+                <li>Click is still largely preferred with touch screen devices and can be thought of as a “tap”</li>
+                <li>Touchend initializes when the user stops touching the screen.</li>
+                <li>Touchmove initializes when the user is moving their finger on the screen without lifting it up (Think swipe)</li>
+                <li>Touchcenter happens when the user is already touching the screen and then swipes over the element with the listener attached to it.</li>
+                <li>Touchleave happens when the user is still touching the screen but moves away from the element with the even listener.</li>
+                <li>Touchcancel happens when the event is interrupted such as a user using too many fingers or moving their finger outside of the window, or a pop up occurring.</li>
+                <li>Because a screen can be touched multiple times touch even objects have a property called touches.  It includes length that returns how many touch points are in contact with the surface. </li>
+                <li>Each touch object has a number of properties, many similar to the event object such as screenX and screenY to find the coordinates where the screen was being touched.  They also have unique ones such as radiusx and radiusy which given an 
+                    <br>indication of the area covered by the touch.  Lastly is foce which returns the amount of pressure being applied.</li>
+                <li>Each touch object also has an identifier property which gives a unique ID that ca be used to ensure you are dealing with the same touch.</li>
+                <li>Caution should be used with all touch events because many of the methods are still experimental and not widely implemented in browser.</li>
+                <li>removeEventListener() method can be used to remove an even listener</li>
+                <li>You should not use anonymous functions for the arguments in an event listener, other wise you will not be able to remove the event listener later.</li>
+                <li>preventDefault() can be used.  However, you should think carefully before using this because it will not allow a link to direct to the new page.  Or a form to be loaded to the database.  Etc.</li>
+                <li>Bubbling is the default method.  This means that the event “bubbles” up the node tree.</li>
+                <li>addEventListener() method has a third parameter which is a Boolean.  This lets the system know whether to use capturing or bubbling.   
+                    <br>Capturing fires the event on the parent node and then works down to the actual element being “clicked”</li>
+                <li>The Bubbling phase can be stopped by using event.stopPropagation() method.</li>
+                <li>You have to be extremely careful with stopPropagation because you can accidentally stop other event listeners.</li>
+            </ul>
+            </body>
+            </html>
