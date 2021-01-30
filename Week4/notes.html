@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> Week 4 Notes </title>
+        <meta charset = "UTF-8">
+    </head>
+    <body>
+        <h1>My Notes</h1>
+        <h3>Questions</h3>
+        <ul>
+            <li>Why would we want to see the fields of a form as an object?</li>
+            <li>Are there specific instances where blur/focused/changed should be used?</li>
+            <li>Why would you use a value attribute to set the value of a field when you can use placeholder?</li>
+            <li>What scenario would you want a object to only have an inherited value and not its own property?</li>
+            <li>Are there other useful libraries than JQuery, Lodash, and Underscore?</li>
+        </ul>
+        <br>
+        <h3>Forms</h3>
+        <ul>
+            <li>Forms are traditionally handled backend via PHP.  However, they can also be handled frontend before hitting the servers by using JS.</li>
+            <li>Forms should have a name (usually something that describes the form use)  and an action (this is used for server size and working with PHP)</li>
+            <li>The input field will also have a name, this will be used to access the information inside of it.</li>
+            <li>We can use the DOM property forms (document.forms) to return an HTML collection of all the forms in the document in the order that they appear in the markup.</li>
+            <li>We can then call that form as an object 
+                <ul>
+                    <li>Const form = document.forms[0];    
+                        <br>(We use an index because the property is returning an array of forms, using 0 says to assign the first (and only) form to this variable.</li>
+                </ul>
+            </li>
+            <li>Another notation you can use is 
+                <ul>
+                    <li>Const forms =document.forms[‘search’] 
+                        <br>(This notation must be used if the name of the form contains any white spaces or “improper” characters)</li>
+                </ul>
+            </li>
+            <li>Form objects also have a method called elements.  This will return an HTML collection of elements contained within the form.</li>
+            <li>A form can be manually submitted by the user by employing something such as a button.
+                <ul>
+                    <li>button type = ‘submit’> Submit /button</li>
+                    <li>input type = ‘submit’ value = ‘Submit’</li>
+                    <li>input type =’image’ src=’button.png’</li>
+                </ul>
+            </li>
+            <li>Form.reset() method will reset all the form controls back to their initial values as specified in the HTML.</li>
+            <li>The focus event occurs when a field of the form is tapped or clicked or navigated to otherwise.  It can include hovering.</li>
+            <li>The blur event occurs when the field is “unfocused” moved away from in some manner including moving the mouse away from the field.</li>
+            <li>The changed event occurs when the field was changed and then the user navigates away from the field in some manner.</li>
+            <li>Usually when a form is submitted it is sent to the server to process.  However, a submit event listener can be added via JS.</li>
+            <li>We can also prevent the submit form from trying to go to a new URL by adding: Event.preventDefault();</li>
+            <li>Text input element objects have values.  We can use these values to report back what the user entered into the particular field.
+                <ul>
+                    <li>Function search(event)
+                        <br>Alert(‘you searched for: ${input.value} );
+                        <br>Event.preventDefault();
+                        </li>
+                </ul>
+            </li>
+            <li>You can prefill a field through JS by using:    input.value = ‘Search Here’
+                <ul>
+                    <li>The problem with this method is the field stays filled unless the user manually deletes what is in the field.</li>
+                </ul>
+            </li>
+            <li>However, the blur and focus methods can be implemented to remedy this situation.  (The easiest way though is simply using the placeholder attribute)</li>
+            <li>There are several types of form controls such as:
+                <ul>
+                    <li>input fields, including text, passwords, check boxes, radio buttons, and file uploads</li>
+                    <li>'select' menus for drop down lists of options</li>
+                    <li>'textarea' elements for longer text entry (makes a box for text rather than a line)</li>
+                    <li>'button' elements for submitting and resetting forms</li>
+                </ul>
+            </li>
+            <li>Form.addEventListener(‘submit’, makeHero, false);   This event listener allows us to invoke the function of makeHero.</li>
+            <li>Check boxes should all have the same name attribute value.  This allows them to be accessed as an HTML collection.</li>
+            <li>Check boxes can be forced to being checked by:
+                <ul>
+                    <li>Document.forms.hero.powers[0].checked = true;  (This says input named powers in the hero form, the first box needs to be marked as true. 
+                         Check boxes are always either true “checked” or False “blank”</li>
+                    <li>This can also be accomplished via HTML input type = ‘checkbox’ value =’Flight’ name =’ powers’ checked></li>
+                </ul>
+            </li>
+            <li>Radios will only allow one option to be selected while checkboxes will allow several options to be selected.</li>
+            <li>Radio buttons can be set to “true” similar to checkboxes.  However, if one from the group (same name attribute) is selected the others will automatically 
+                be set to unselected or false. 
+                <br>Form.type[2].checked = true;
+                </li>
+            <li>A submit button can be disabled by adding the disabled attribute within the opening tag.  It can then be changed programmatically using the disabled property. </li>
+        </ul>
+        <br>
+        <h3>Object Oriented Programming</h3>
+        <ul>
+            <li>A constructor function defines the properties and methods of an object.</li>
+            <li>The keyword “this” is used to represent the object that will be returned by the constructor function.
+                <br>Ex: const Dice = function(sides=6){
+                <br>This.sides = sides;
+                <br>This.roll = function(){
+                <br>Return Math.floor (this.sides * Math.random() + 1 )
+                <br>}
+                <br>}
+                </li>
+            <li>This makes it very simple to call an instance of  the dice constructor
+                <br>Const redDice = new Dice(); OR const redDice = new Dice;
+                </li>
+            <li>However, if any of the default argument changed (the number of sides of the dice) we need to add parenthesis back
+                <br>Ex: const whiteDice = new Dice(4);
+                </li>
+            <li>When using a constructor if you call a new instance of the constructor it inherits all the properties and methods defined in the original function   
+                <br>IE redDice has sides (6)  and can roll();
+                </li>
+            <li>Constructors have numerous built in functions:
+                <br>Object    const literalObject = {}
+                <br>Array     const literalArray = [1,2,3]
+                <br>And Function
+                </li>
+            <li>
+                Classes are very similar to constructors and work in the same way but were introduced in ES6
+                <br>Ex: class Dice {
+                <br>Constructor(sides=6){
+                <br>This.sides = sides;
+                <br>}
+                <br>Roll() {
+                <br>Return Math.floor(this.sides * Math.random() + 1 )
+                <br>}
+                <br>}
+                </li>
+            <li>My convention the names of a constructor or class should be capitalized.</li>
+            <li>Classes are preferred over constructor functions because they are more succinct. </li>
+            <li>Using classes prevents an instance being created without “new” while the constructor function will still create the instance just with null set for all values</li>
+            <li>All Objects have a constructor property that will return the constructor function that created it.</li>
+            <li>Static keyword can be used in class declarations to create static methods.  These are sometimes called class methods.  A static method is called by the class directly
+                 rather than by instances of the class.</li>
+            <li>Static methods are not available to instances of the class.</li>
+            <li>Every class has prototype properties that will be “inherited” by every instance of the class.</li>
+            <li>Once the class is declared you can add new properties/methods to the class by using the prototype property.
+                <br>Ex: Turtle.prototype.weapon = “Hands’;
+                </li>
+            <li>We can find the prototype of an object by:
+                <br>1)	Raph.constructor.prototype;         Turtle{ attack: [Function], weapon: ‘Hands’}
+                <br>2)	Object.getPrototypeOf(raph); 
+                <br>3)	Raph.__proto__  (many JS engines will accept this style it is known as the dunder porto  or ‘double underscore proto
+                </li>
+            <li>It should be noted that using the getPrototypeOf() method is the preferred syntax to find the prototype of an object.</li>
+            <li>We can also use isPrototypeOf() method to use a check to see if it is the prototype of an instance.</li>
+            <li>hasOwnProperty() method can be used to see if a property is the object’s own or if it was inherited</li>
+            <li>Prototypes are live.  So if anything is updated or changed in the prototype all instances of the prototype will automatically inherit those changes.</li>
+            <li>A single instance of an object can overwrite any inherited values from the prototype.
+                <br>Ex leo.weapon = ‘Katana Blades’;
+                <br>Raph.weapon = ‘Sai’;
+                <br>Don.weapon = ‘Bo Staff’’
+                </li>
+            <li>Once the value is overwritten it becomes an own property vs an inherited property.</li>
+            <li>Any own properties take precedence over the same prototype property value.</li>
+            <li>Never use arrays or objects as default values in prototypes.</li>
+            <li>By default all object’s methods are public meaning they can be seen and changed anywhere within the JS program.
+                <br>Good practice is that all built in functions be non-enumerable, and user-made methods to be enumerable.
+                <br>(non enumerable will not show up if a for loop were to look through the methods while enumerable would)
+            </li>
+            <li>A class can inherit from another class by using the ‘extends’ keyword.</li>
+            <li>Inside the child class declaration super refers to the parent class, and can be used to access any properties or call any methods of the parent class.</li>
+            <li>Polymorphism means that different objects can have the same method but they can be implemented in completely different ways.
+                <br>IE calling toString() in an array will create a comma separated string list of the array.   While on a primitive data type it will simply return the one item as a string like 2 as ‘2’
+                </li>
+            <li>Monkey patching is a way to add in functionality at the prototype level of primitive data types.  However, it is not recommended within the JS world.</li>
+            <li>All object properties have the following attributes stored in the property descriptor:
+                <ul>
+                    <li>Value = the value of the property and is undefined by default</li>
+                    <li>Writable = This Boolean value shows whether a property can be changed or not.</li>
+                    <li>Enumerable = This Boolean value will show whether the property will show or not when the object is displayed in a for…. In loop.</li>
+                    <li>Configurable = This Boolean value shows whether you can delete the property or change any of it’s attributes.</li>
+                </ul>
+            </li>
+            <li>Instead of assignment we can add properties to an object by using the Object.defineProperty() method.  This first argument passed is the object you want to add the property to, followed by the descriptor which contains the attributes you want to set. 
+                <br> Any attributes left out will set to default. </li>
+            <li>An object property descriptor can have a getter or setter method instead of a value attribute. </li>
+            <li>The object constructor function has a method called create(). This allows for a new object to be created that is an exact copy of the object that is provided in the argument.</li>
+            <li>A shallow copy creates a new pointer but still has only 1 object in the memory.  A hard copy creates a new object in the memory that is an exact copy of the 1st object.</li>
+            <li>Mixin property allows us to do such things as build factory functions and add in properties and methods to objects without linking them</li>
+            <li>Is vs Has:
+                <br>Is uses prototype inheritance.  Has uses Mixin inheritance.
+                </li>
+            <li>When nesting functions it may be useful to define another variable to this such as that.</li>
+            <li>The bind() method is used to set the value of this in the function.  If this is provided as an argument to bind() while it’s still in scope, any reference to this inside of the nested function will 
+                <br>be bound to the object calling the original method. </li>
+            <li>For-of  works for arrays so nested functions aren’t necessary
+                <br>Ex: superman.findFriends = function() {
+                <br>For(cont friend of this.friends) {
+                <br>Console.log(‘${friend.name} is friends with ${this.name}’);
+                <br>};
+                <br>}
+                </li>
+            <li>Arrow functions are also a good choice 
+                <br>Ex:superman.findFriends = function() {
+                <br>This.friends.forEach((friend) => {
+                <br>Console.log( ‘${friend.name} is friends with ${this.name}’);
+                <br>};
+                <br>}
+                </li>
+        </ul>
+        <br>
+        <h3>Modern JS Development</h3>
+        <ul>
+            <li>Its important to keep your code organized, because as you progress codes will become more and more complex.  
+                <br>Without good organization your code can quickly become hard to understand and unwieldy</li>
+            <li>There are several libraries that allow for easier implementation.  One of the most well known and commonly used library is JQuery.  
+                <br>JQuery can take a task and help make it much more succinct, going from 4 lines of code down to just 1.
+                <br>Ex para.classList.add(‘important’);
+                <br>Const newPara = document.createElement(‘p’);
+                <br>newPara.textContent = ‘Another Paragraph’;
+                <br>para.appendChild(newPara);
+                <br>
+                <br>$(para).addClass(‘important’).append(‘<p>Another Paragraph</p>’);
+                </li>
+            <li>JQuery is also especially useful with having older browser support.  JQuery can manipulate and decide which method is best for which browser is being used to access the JS.</li>
+            <li>The $ symbol is the alias used for JQuery global object.</li>
+            <li>Underscore and Lodah are very similar libraries of functions that provide additional functionality to the language.</li>
+            <li>It’s worth considering adding one of these to your code because it can provide access to a large number of well tested utility functions that are often required.</li>
+            <li>An advantage of using a large library is the fact of how extensively it is already used, accepted, and has been bug tested.  In essence it helps to make your code “bullet-proof”</li>
+            <li>One disadvantage is that both codes need to be uploaded to your site.  The library as well as your own code, this can lead to some performance issues.</li>
+            <li>Making code modular means to keep groups of simple basic functions together in one file.  They are all closely related, but can quickly be added to other code.  
+                <br>IE you may have a group of functions for AJAX.  It would be wise to group these together and then implement the file when AJAX is needed.
+                </li>
+            <li>It is considered good practice to keep your code as loosely connected as possible.  Loosely connected code means you can change something in the module and it won’t affect the code,
+                <br>and or you can easily change out the module and there are no major changes needed.  Tightly connected code force for recoding if anything changes.</li>
+            <li>You can be selective at which functions are imported from a module by using their name.
+                <br>IE export { 
+                <br>Variance,
+                <br>Mean
+                <br>}
+                </li>
+            <li>Import (mean, variance} from ‘./stats.js’;</li>
+            <li>Or you can import all the functions from a module
+                <br>IE import * as stats from ‘./stats.js’
+                </li>
+            <li>Default exports refer to a single variable, function or class in a module.</li>
+            <li>You cannot use more than 1 Default Export per module.</li>
+            <li>The big different with default exports is that you don’t need to use curly braces or may any mention of the vault that is being imported, making the statement read more easily.</li>
+            <li>You can change the name of the imported module.
+                <br>Import sq from ‘./squre.js’;
+                <br>Would make the function named sq() rather than square()
+                </li>
+            <li>Node modules are slightly different than JS modules.  Node modules require you to assign what you want to export to module.exports
+                <br>IE module.exports  = x => x*x;
+                <br>This would export the square() function.
+                </li>
+            <li>To use the previous function called from a node module it must be required by the JS.
+                <br>IE const square = require(‘./squareFunction’);
+                </li>
+            <li>MVC framework is known as Model View Controller.</li>
+            <li>Models are objects that implement the functionality for creating, reading, updating, and deleting specific pieces of information about the application.</li>
+            <li>Views are the visual representation of the model showing all the relevant information. (The HTML shown on a webpage)</li>
+            <li>Controller links models and views together by communicating between them.  They respond to evens, which are usually inputs from a user, process the information, 
+                <br>and then update the model and view accordingly.</li>
+            <li>React is one of the largest vue libraries and was developed by Facebook.</li>
+            <li>React uses its own language called JSX, which allows for HTML and JS to be mixed together elegantly</li>
+            <li>Package.JSON keeps tracks of what packages you have installed and what dependencies they rely on.</li>
+            <li>CDN – Content delivery resources. A system of distributed servers resulting in quick and efficient delivery of content based on geographic location</li>
+            <li>If you use lots of different files and all need to be used on the application it is smart to minify and compress them.  Bundle.min.js is usually used to signify that this has been done.</li>
+            <li>The script tag is best placed at the very bottom of the html code right before the closing body tag.</li>
+            <li>A trasnpilier allows you to use the most up to date code, without fear of it not being supported.  Web browsers are always going to be slightly behind the curve on new ES functions.</li>
+            <li>The most common transpiler is Babel.</li>
+            <li>Well named and noted code should always be used in development while minified code should be used for production.</li>
+        </ul>
+        </body>
+        </html>
