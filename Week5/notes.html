@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> Week 4 Notes </title>
+        <meta charset = "UTF-8">
+    </head>
+    <body>
+        <h1>My Notes</h1>
+        <h3>Questions</h3>
+        <ul></ul>
+        <h3>Exceptions</h3>
+        <ul>
+            <li>There are generally 3 types of errors:
+                <ul>
+                    <li> System error meaning there is something wrong with the system or external devices.</li>
+                    <li>Programmer error which is when there is syntax or faulty logic within the code</li>
+                    <li>User error which happens when data is entered incorrectly</li>
+                </ul>
+            </li>
+            <li>A good programmer will design the application in such a way to limit user errors.  So in a way user errors could be in fact considered programmer errors.</li>
+            <li>Exceptions are errors that produce a return value that can then be used by the program to deal with the error… such as calling a method that is nonexistent will result in a reference error</li>
+            <li>Exceptions will also produce a STACK TRACE which is a sequence f functions or method calls that lead to the point where the error occurred</li>
+            <li>Warnings occur when there is an error in the code, but it isn’t severe enough to cause the application to crash.</li>
+            <li>An example of a warning is assigning a value to a variable that doesn’t exist</li>
+            <li>Warnings and exceptions are displayed differently for different browsers.  Some may show a small icon, others can have a pop up, and still others will only show the warning or exception if you have the console open.</li>
+            <li>JS is considered a forgiving language.  It will not always crash if there is an error.  Sometimes it will simply stop running silently in the background.  However, this can cause later catastrophic errors and failures of the program. It also makes it that much more difficult to track down the error in the first place.</li>
+            <li>A good programmer will test it rigorously during development before it goes into production.  They will do their best to make sure the failures are LOUD yet graceful.  Loud failures allow for quicker problem/bug solving.</li>
+            <li>A good programmer will also make sure there are plenty of catch safes in effect that will be able to catch the exceptions deal with them and not affect the end user experience, or affect it to the smallest degree possible</li>
+            <li>Strict mode will throw more errors due to “poor” coding language/syntax.  However, it allows for early detection of coding errors which helps for a quicker fix.   It also allows for improved clarity and speed.</li>
+            Strict mode can also be added per function basis by adding ‘use strict’ first thing inside of the curly braces.<li>The opposite of strict mode is sometimes called sloppy mode as it’s very forgiving of sloppy programming practices.  Strict mode encourages a better quality of JS to be written. </li>
+            <li>To implement strict mode ‘use strict’; simply needs to be added to the first line of the JS file</li>
+            <li>Modules do not need strict mode declared, because they are in strict mode by default.</li>
+            <li>Linting is useful to help make your code consistent.  However, passing linting doesn’t mean your code will work, just less likely to have problems.</li>
+            <li>We can do a check to make sure the browser being used will support a feature by wrapping it in an if method.
+                <br>Ex:    if (window.holoDeck) {
+                <br>         virtualRealtiy.activate();
+                <br>}
+                </li>
+            <li>By doing feature checking we are able to ensure less exceptions being thrown, because the method will not be called unless it actually exists.  If it doesn’t exist it will fail gracefully without any exceptions being thrown.</li>
+            <li>When debugging often times where the error occurs is not where it originated.</li>
+            <li>When debugging the creation of breakpoints is useful, because it will allow you to check what is happening at different points within your code.</li>
+            <li>The alert() method is a good method to use as a break point, because it stops the code completely (allowing for us to examine variable values etc.) before the alert is cleared by clicking ok.</li>
+            <li>The alert() method today, however, is discouraged because of advances within JS.</li>
+            <li>The console.log function can be used at various places within the code, to log to the console what the variable value was at that point.</li>
+            <li>The console.trace function will create a stack trace that will show the functions that were called in the lead up to an exception occurring while the code is running.</li>
+            <li>One of the most useful commands is the debugger keyword, it will create a breakpoint that will pause your code, and allow you to see where your program is. You can also hover over any variable to see their value.</li>
+            <li>If using the debugger keyword remember it must be removed before “shipping” otherwise the program will freeze repeatedly when users are trying to access it</li>
+            <li>A throw statement can be placed anywhere within a JS program.  This will cause the execution of the program to stop.  However, it is preferred to throw an error object instead because then it can be caught with a “catch” block and dealt with accordingly.</li>
+            <li>If we suspect that a piece of code will throw an exception we can wrap it in a try block.  This will allow the code to run as normal but if an exception occurs it will pass the error object that is thrown onto a catch block.
+               <br> Ex:
+               <br> Function imaginarySquareRoot(number) {
+               <br> ‘use strict’;
+               <br> Try{
+               <br> Return String(squareRoot(number));
+                <br>} catch(error) {
+                <br>Return squareRoot(-number) + 'i';
+                </li>
+            <li>The catch block will only run if an exception is thrown inside of the try block. </li>
+            <li>A finally block can be added after a catch block.  This will always be executed after the try or catch block regardless of whether an exception occurred or not.  It is useful if you want some code to run in both cases.
+                <br>Ex:  function imaginarySquareRoot(number) {
+                <br>‘use strict’;
+                <br>Let answer;
+                <br>Try {
+                <br>Answer = String(squareRoot(number));
+                <br>} catch(error) {
+                <br>Answer = squareRoot(-number) + ‘i’;
+                <br>} finally {
+                <br>Return ‘+ or - ${answer}’;
+               <br> }
+                <br>}
+                </li>
+                <li>Jest is a TDD (Test Driven Development) framework created by Facebook</li>
+        </ul>
+</body>
+</html>
