@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> Week 1 Notes </title>
+        <meta charset = "UTF-8">
+    </head>
+    <body>
+        <h1>My Notes</h1>\
+        <br>
+        <h3>Questions</h3>
+        <ul>
+            <li>Other than a mathematical situation such as finding factors, when would a recursive function be used?</li>
+            <li>When would a callback be better than a promise? And visa versa?</li>
+            <li>What would be a practical application for currying?</li>
+        </ul>
+        <br>
+        <h3>Other Functions</h3>
+        <ul>
+            <li>All functions have a length property.  This property says how many parameters can be passed</li>
+            <li>An IIFE (immediately executed function) can be used around your code to set your code to strict when possibly 
+                doing team work and not knowing if someone else’s code is set to strict or not.</li>
+            <li>A function can redefine and even rewrite itself.  However, we must be careful when doing this because previously 
+                assigned properties could be lost</li>
+            <li>We can define a function based on what methods are supported.</li>
+            <li>Recursive functions are functions that will continue to invoke itself until a certain condition is met.</li>
+            <li>Promises can be used in place of callbacks.  They are said to be pending until all code leading to the promise is complete.  
+                In this state the promise is said to be unsettled. Once the operation is completed it is said to be settled.  A settled promise is 
+                either:
+               <br> a.	Resolved – the asynchronous operation was completed successfully
+               <br> b.	Rejected – The asynchronous operation didn’t work as expected, wasn’t successfully completed, resulting in an error.
+            </li>
+            <li>Asynchronous functions can be created by preceding them with async.  The callback / promise / asynchronous function is preceded
+                 by the keyword await.</li>
+            <li>When using an asynchronous function the steps of the function should be wrapped in a try block in order to catch any errors that might be thrown.  
+                <br>Each step can be written in order, and the await is used to ensure the next line of code is not ran until that part is completed (receiving a value 
+                <br>from another function).</li>
+            <li>When using a generator function * is placed after function and before the name of the function.  Yield is then used where return is generally used.</li>
+            <li>By using “pure functions” we are more able to create building blocks to more complex functions.  This modularizes them and makes them more usable and easily 
+                understandable.</li>
+            <li>Higher order functions will accept another function as an argument or return another function.</li>
+            <li>A function has been curried when not all arguments have been supplied to the function.</li>
+            <li>All curried functions are high order functions because they return a function, however not all high order functions are curried.</li>
+            <li>A curried function allows for a more general function to be specialized to a particular situation:
+                   <br>Ex: function multiplier(x,y) {
+                   <br>  if (y === undefined) {
+                   <br>     return function(z) {
+                   <br>     return x * z;
+                   <br>    }
+                   <br> } else {
+                   <br>    return x * y;
+                   <br> }
+                   <br>}
+                   <br> calcTax = multiplier(0.22);
+                   <br> function (z){
+                   <br> return x * z;
+                   <br>}
+                   <br>calcTax(400);
+                   <br>88
+                </li>
+        </ul>
+        <br>
+        <h3>AJAX</h3>
+        <br>
+        <ul>
+            <li>AJAX allows for new web content to be updated without completely refreshing the page.</li>
+            <li>AJAX stands for Asynchronous JavaScript and XML.</li>
+            <li>JSON is now used more frequently than XML and is native to JavaScript (though the process it uses it still known as AJAX)</li>
+            <li>At this time the redirect() method is not supported in any browsers.</li>
+        </ul>
+    </body>
+</html>
