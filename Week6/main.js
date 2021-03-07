@@ -1,3 +1,18 @@
+
+//Checking an Item Off the List
+const list = document.querySelector('ul');
+list.addEventListener('click', checked);
+
+
+
+//checked function
+function checked(event){
+    if (checked.target.tagName === 'LI'){
+        checked.target.classList.toggle('checked');
+    }
+
+}
+
 //Add New Item to To Do List
 
 function newListItem() {
@@ -9,4 +24,4 @@ document.getElementById("myList").appendChild(node);
 }
 
 
-//
+
