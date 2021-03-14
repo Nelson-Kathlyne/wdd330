@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 10 Notes</title>
+</head>
+<body>
+    <h1>Week 10 Notes</h1>
+
+    <h3>Questions</h3>
+    <ul>
+        
+    </ul>
+    <h3>Client Side Validation</h3>
+    <ul>
+        <li>It is essential to make sure that the form input values match what is needed by the controller this is known as client-side form validation</li>
+        <li>By being able to “catch” the issue on the client side, it allows for a better user experience.  You can quickly fix the “problem” where as if 
+            <br>it went to the server first before it was rejected there could be a significant delay. </li>
+        <li>It should be noted that client-side validation is not the best and most exhaustive form of security though.  Security checks should still be ran on any 
+            <br>form submitted data at the server side as well as the client-side.</li>
+        <li>If the data on the form is entered correctly it will usually go onto the server-side of validation, and then be uploaded to the database. </li>
+        <li>There are 2 different types of client-side validation.  1 is Built-in form validation, and the other is Javascript.</li>
+        <li>JavaScript form validation is more customizable, however you must code it all yourself, or use a library to do so.</li>
+        <li>Regular expressions allow for certain patterns to be defined especially useful for passwords.</li>
+        <li>Javascript validation allows for customized error messages outside of the HTML5 constraints.</li>
+        <li>Customizing error messages is one of the most common use cases for using constraint validation API.</li>
+        <li>You can also do form validation using JavaScript without Constraint Validation API.  You just have to write your own code.</li>
+    </ul>
+    <h3>Fetch API</h3>
+    <ul>
+        <li>The fetch method allows for JavaScript to access and manipulate parts of the HTTP pipeline; namely requests and responses. </li>
+        <li>The global fetch() method allows for a logical way to fetch resources asynchronously across the network.</li>
+        <li>Though fetch and jQuery AJAX are similar they differ in three different ways:
+            <ol>
+                <li>•	The Promise returned from fetch() won’t reject on HTTP error status even if the response is an HTTP 404 or 500. Instead, it will resolve normally (with ok status set to false), 
+                    <br>and it will only reject on network failure or if anything prevented the request from completing</li>
+                <li>•	fetch() won’t send cross-origin cookies unless you set the credentials init option. (Since April 2018. The spec changed the default credentials policy to same-origin. 
+                    <br>Firefox changed since 61.0b13.)</li>
+                <li>•	Fetch requests are controlled by the connect-src directive of Content Security Policy rather than the directive of the resources it's retrieving</li>
+            </ol>
+        </li>
+        <li>The simplest use of fetch() takes one argument, the path to the resource you want to fetch, and returns a promise containing the response (a response object)</li>
+        <li>Fetch() methods can also accept a second parameter, an init object that allows you to control a number of different settings.</li>
+        <li>With some calls we must include the origin    fetch(‘https://example.com’,{credentials: ‘include’});</li>
+        <li>You can upload JSON data using fetch()
+            <ul>
+                <li>const data = { username: 'example' };
+
+                   <br> fetch('https://example.com/profile', {
+                    <br>method: 'POST', // or 'PUT'
+                    <br>headers: {
+                    <br>'Content-Type': 'application/json',
+                    <br>},
+                    <br>body: JSON.stringify(data),
+                    <br>})
+                    <br>.then(response => response.json())
+                    <br>.then(data => {
+                    <br>console.log('Success:', data);
+                    <br>})
+                    <br>.catch((error) => {
+                    <br>console.error('Error:', error);
+                    <br>});
+                    </li>
+            </ul>
+        </li>
+        <li>You can upload files using fetch()
+            <ul>
+                <li>const formData = new FormData();
+                    <br>const fileField = document.querySelector('input[type="file"]');
+                    
+                    <br>formData.append('username', 'abc123');
+                    <br>formData.append('avatar', fileField.files[0]);
+                    
+                    <br>fetch('https://example.com/profile/avatar', {
+                    <br>    method: 'PUT',
+                    <br>    body: formData
+                    <br>})
+                    <br>.then(response => response.json())
+                    <br>.then(result => {
+                    <br>    console.log('Success:', result);
+                    <br>})
+                    <br>.catch(error => {
+                    <br>console.error('Error:', error);
+                    <br>});
+                    </li>
+            </ul>
+        </li>
+        <li>You can upload multiple files using fetch()
+            <ul>
+                <li>const formData = new FormData();
+                    <br>const photos = document.querySelector('input[type="file"][multiple]');
+                    
+                    <br>formData.append('title', 'My Vegas Vacation');
+                    <br>for (let i = 0; i < photos.files.length; i++) {
+                    <br>    formData.append('photos', photos.files[i]);
+                    <br>}
+                    <br>
+                    <br>fetch('https://example.com/posts', {
+                    <br>    method: 'POST',
+                    <br>    body: formData,
+                    <br>})
+                    <br>.then(response => response.json())
+                    <br>.then(result => {
+                    <br>    console.log('Success:', result);
+                    <br>})
+                    <br>.catch(error => {
+                    <br>    console.error('Error:', error);
+                    <br>});
+                    </li>
+            </ul>
+        </li>
+        <li>It is helpful to be able to check if the fetch() was successful, rather than assuming it was or wasn’t and or assuming it was a network error. 
+            <br>TypeError are very common it usually means that there is a permission error or something similar (Error 404) However, it could be a problem in the fetch.
+        <ul>
+            <li>fetch('flowers.jpg')
+                <br>.then(response => {
+                <br>    if (!response.ok) {
+                <br>    throw new Error('Network response was not ok');
+                <br>    }
+                <br>    return response.blob();
+                <br>})
+                <br>.then(myBlob => {
+                <br>    myImage.src = URL.createObjectURL(myBlob);
+                <br>})
+                <br>.catch(error => {
+                <br>    console.error('There has been a problem with your fetch operation:', error);
+                <br>});
+              </li>
+        </ul>
+        </li>
+        <li>Rather than always passing a path into fetch for the resource you want you can create a request object by using the Request() constructor, 
+            <br>and then pass that in as a fetch() method argument.
+            <ul>
+                <li>const myHeaders = new Headers();
+
+                   <br> const myRequest = new Request('flowers.jpg', {
+                    <br> method: 'GET',
+                    <br>headers: myHeaders,
+                    <br>mode: 'cors',
+                    <br>cache: 'default',
+                    <br>});
+                    <br>
+                    <br>fetch(myRequest)
+                    <br>.then(response => response.blob())
+                    <br>.then(myBlob => {
+                    <Br>myImage.src = URL.createObjectURL(myBlob);
+                    <br>});
+                    </li>
+            </ul>
+        </li>
+        <li>Request objects accept all the same parameters as fetch() method, you can even pass in an existing request object in order to create a copy of it.</li>
+        <li>Creating a copy of a request object can be useful because request and response bodies are one use only.  Making a copy allows you to make use of the request/response again while varying the init options if desired. 
+            <br>The copy must be made before the body is read, and reading the body in the copy will also mark it as read in the original request.</li>
+        <li>Using the clone() method is another way to make a copy, and again must be used before the body of the original req/res is read, but ready the body of a cloned res/req will not cause it to be marked as read in the original.</li>
+        <li>You can create your own headers by using the Headers() constructor</li>
+    </ul>
+</body>
+</html>
