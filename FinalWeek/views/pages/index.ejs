@@ -1,0 +1,79 @@
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+    <title>Food Information</title>
+    <link rel="stylesheet" href="/stylesheets/main.css">
+</head>
+
+<body>
+    <form action="/" method="get" id="search-form">
+        <label><h2>Search For Food:<h2></label><br>
+        <input type="text" name="query" id="query" placeholder="Search">
+        <input type="submit" value="Search">
+    </form>
+    <p id="error"></p>
+    <div id="result"></div>
+    <div id="details"></div>
+    <script>
+        const apiKey = 'AqMt9yo7urnndbOD9npmg0RozxCY2g340xLMSxuJ';
+        const resultsDiv = document.getElementById('result');
+        const detailsDiv = document.getElementById('details');
+
+
+        const getDetails = (fdcId) => {
+            detailsDiv.innerHTML = "";
+            resultsDiv.innerHTML = "";
+            queryUrl = "https://api.nal.usda.gov/fdc/v1/food/"+fdcId+"?api_key="+apiKey;
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    var result = JSON.parse(this.responseText);
+                    var description = result.description;
+                    var brand = result.brandOwner;
+                    var ingredients = result.ingredients ;
+                    var nutrients = result.foodNutrients;
+                    var cal = nutrients[3];
+                    var calorie = cal.amount;
+                    console.log(cal);
+                    detailsDiv.innerHTML += "<h3>"+description+"</h3>";
+                    detailsDiv.innerHTML += "<p> Brand: "+brand+"</p>";
+                    detailsDiv.innerHTML += "<p> Ingredients: " +result.ingredients+"</p>";
+                    
+                }
+            };
+            xmlhttp.open("GET", queryUrl, true);
+            xmlhttp.send();
+        }
+                
+                    
+        
+
+        document.getElementById('search-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const query = document.getElementById('query').value;
+            let queryUrl = 'https://api.nal.usda.gov/fdc/v1/foods/search?api_key='+apiKey+'&query='+encodeURI(query);
+
+
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    var results = JSON.parse(this.responseText);
+                    // results = results.Search;
+                    var foods = results.foods;
+                    resultsDiv.innerHTML = "<ul>";
+                    foods.forEach((foods)=>{
+                        const li = "<li>"+foods.description+" <a onclick='getDetails(\""+foods.fdcId+"\")' href='#'>View Details</a></li>";
+                        resultsDiv.innerHTML += li;
+                    });
+                    resultsDiv.innerHTML += "</ul>";
+                }
+            };
+            xmlhttp.open("GET", queryUrl, true);
+            xmlhttp.send();
+        });
+    </script>
